@@ -122,5 +122,9 @@
     {\begin{center} \begin{lrbox}{\problembox}\begin{minipage}{.98\textwidth}}
     {\end{minipage}\end{lrbox}\fbox{\usebox{\problembox}} \end{center} }
 
+
+
+
+    
 %%% We finish the class with this command
 \endinput
