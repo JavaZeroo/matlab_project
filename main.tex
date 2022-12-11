@@ -26,6 +26,8 @@
 
 \usepackage{booktabs}
 
+\usepackage{url}
+
 \hypersetup{hypertex=true,
 colorlinks=true,
 linkcolor=blue,
@@ -100,8 +102,8 @@ Date: Dec. 3rd, 2022
 
 \subsection*{Answer}
 
-In order to get the second order accurate forward, backward and centered finite difference
-schemes for finding the derivative. We first write down the Taylor series expansions of $f(x+h)$, $f(x-h)$, $f(x+2h)$,  $f(x-2h)$, $f(x+3h)$ and $f(x-3h)$
+To get the second-order accurate forward, backward and centered finite difference
+schemes for finding the derivative.\cite{numdiff} We first write down the Taylor series expansions of $f(x+h)$, $f(x-h)$, $f(x+2h)$,  $f(x-2h)$, $f(x+3h)$ and $f(x-3h)$
 \begin{equation} \label{eq1}
 	\begin{aligned}
 		f(x+h)  & =f(x)+h\frac{f'(x)}{1 !}+h^2 \frac{f''(x)}{2 !}   \\
@@ -113,18 +115,18 @@ schemes for finding the derivative. We first write down the Taylor series expans
 	\end{aligned}
 \end{equation}
 
-For the second order accurate forward difference,
-we want to find out $f'(x)=\frac{1}{h}(a_0f(x)+a_1f(x+h)+a_2f(x+2h)+O(h^3))$
+For the second-order accurate forward difference,
+we want to find out $f'(x)=\frac{1}{h}(a_0f(x)+a_1f(x+h)+a_2f(x+2h)+\mathcal{O}(h^3))$
 where $a_0$, $a_1$, $a_2$ are all constant.
 Hence, we have
 \begin{equation}
 	\begin{aligned}
 		\frac{f'(x)}{1 !} = f'(x)= \frac{1}{h}( & a_0 f(x)+                                         \\
 		                                        & a_1 f(x)+a_1 f'(x) h+a_1 f''(x) h^2               \\
-		                                        & a_2 f(x)+2 a_2 f'(x) h+4 a_2 f''(x) h^2 + O(h^3))
+		                                        & a_2 f(x)+2 a_2 f'(x) h+4 a_2 f''(x) h^2 + \mathcal{O}(h^3))
 	\end{aligned}
 \end{equation}
-Which is equivalent to solve a linear system
+Which is equivalent to solving a linear system
 \begin{equation}
 	\left(
 	\begin{array}{ccc|c}
@@ -136,10 +138,10 @@ Which is equivalent to solve a linear system
 \end{equation}
 
 Hence, $a_0 = -\frac{3}{2}$, $a_1=2$ and $a_3 = -\frac{1}{2}$, and
-\begin{equation}f' (x)=\frac{-\frac{3}{2}f (x)+2f (x+h) -\frac{1}{2}f (x+2h)}{h}+O(h^2)\end{equation}
+\begin{equation}f' (x)=\frac{-\frac{3}{2}f (x)+2f (x+h) -\frac{1}{2}f (x+2h)}{h}+\mathcal{O}(h^2)\end{equation}
 
-With the same process, We can calculate second order accurate forward, backward and centered finite difference
-schemes for first derivative and second derivative:
+With the same process, We can calculate second-order accurate forward, backward and centered finite difference
+schemes for the first derivative and second derivative:
 \begin{enumerate}
 	\item Second order accurate centered difference approximations:
 	      \begin{equation}
@@ -175,7 +177,7 @@ I chose $x^4+\\sin(x)$ as test function, with $0\leq x \leq 2$ and $h=0.1$
 	\label{fig:sample_points}
 \end{figure}
 
-After applying second order accurate difference approximations, I draw $f'(x)$ and $f''(x)$ to check the difference between real derivative and finite difference schemes.
+After applying second-order accurate difference approximations, I draw $f'(x)$ and $f''(x)$ to check the difference between a real derivative and finite difference schemes.
 
 \begin{figure}[h!]
 	\centering
@@ -192,7 +194,7 @@ After applying second order accurate difference approximations, I draw $f'(x)$ a
 \end{figure}
 
 
-Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second order accurate difference approximations is really close to the real derivative, even their actually difference. You can find more implement detail in the code.
+Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second-order accurate difference approximations are close to the real derivative, even their actual difference. You can find more implementation detail in the code.
 
 %----------------------------------------------------------------------------------------
 
@@ -200,11 +202,11 @@ Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second order
 
 \subsection*{Answer}
 
-In order to evaluate double integrals which is perform on the rectangle $R = \{ (x, y) \in \mathbb{R}^2: a \leq x \leq b and c \leq y \leq d  \} $, We first consider the uniform-grid in each
-dimension. Let grid space of $x$ and $y$ be the $h$, which means we have $x_1, x_2, \ldots , x_{n_x}$ and $y_1, y_2, \ldots , y_{n_y}$.
+To evaluate double integrals which are performed on the rectangle $R = \{ (x, y) \in \mathbb{R}^2: a \leq x \leq b \text{ and } c \leq y \leq d  \} $, We first consider the uniform-grid in each
+dimension. Let grid space of $x$ and $y$ be the $h$, which means we have $x_1, x_2, \ldots , x_{n_x}$ and $y_1, y_2, \ldots , y_{n_y}$.\cite{numinteg}
 
 \subparagraph*{Task 1}
-Now  apply trapezoidal rule to calculate the integral with respect to $x$ with fixed $y$.
+Now apply the trapezoidal rule to calculate the integral to $x$ with fixed $y$.
 \begin{equation} \label{g(y)}
 	\begin{aligned}
 		g(y) & = \int^{b}_{a}f(x,y)\,dx                                                 \\
@@ -248,7 +250,7 @@ Now we can simplify eq.\eqref{substitutedI} as much as possible
 
 \subsection*{Implement}
 
-Here is the implement code with Matlab. I compared matlab's original function with an extra h parameter for testing how different the final integration result would be with different accuracy of the partition. Then use for-loop to accumulate multiple times and finally output the result of integration
+Here is the implemented code with Matlab. I compared Matlab's original function with an extra h parameter for testing how different the final integration result would be with different accuracy of the partition. Then use for-loop to accumulate multiple times and finally output the result of integration
 
 \begin{lstlisting}
 	function I=my_integral2(f, a, b, c, d, h)
@@ -281,7 +283,7 @@ Here I use the formula $\frac{\left\lvert my\_integral2-real\right\rvert }{\left
 	\label{table1}
 	\begin{tabular}{ccc}
 		\toprule
-		               & a=0;b=1;c=2;d=4;h=0.5 & a=0;b=1;c=2;d=4;h=0.1 \\
+		               & a=0;b=1;c=2;d=4;h=0.1 & a=0;b=1;c=2;d=4;h=0.5 \\
 		\midrule
 		my\_integral2  & 199.505289            & 203.962661            \\
 		real           & 199.319395            & 199.319395            \\
@@ -305,6 +307,7 @@ Here I use the formula $\frac{\left\lvert my\_integral2-real\right\rvert }{\left
 	\end{tabular}
 \end{table*}
 
-
-
+\newpage
+\bibliographystyle{plain}
+\bibliography{ref.bib} 
 \end{document}

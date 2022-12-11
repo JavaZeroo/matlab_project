@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{numinteg}
+David Keffer.
+\newblock Numerical techniques for the evaluation of multi-dimensional integral
+  equations.
+\newblock
+  \url{http://utkstair.org/clausius/docs/che505/pdf/IE_eval_N-Dints.pdf},
+  September 1999.
+
+\bibitem{numdiff}
+Alice~C. Yew.
+\newblock Numerical differentiation: finite differences.
+\newblock \url{https://www.dam.brown.edu/people/alcyew/handouts/numdiff.pdf},
+  Spring 2011.
+
+\end{thebibliography}
