@@ -28,6 +28,9 @@
 
 \usepackage{url}
 
+\usepackage{enumitem} 
+
+
 \hypersetup{hypertex=true,
 colorlinks=true,
 linkcolor=blue,
@@ -103,7 +106,7 @@ Date: Dec. 3rd, 2022
 \subsection*{Answer}
 
 To get the second-order accurate forward, backward and centered finite difference
-schemes for finding the derivative.\cite{numdiff} We first write down the Taylor series expansions of $f(x+h)$, $f(x-h)$, $f(x+2h)$,  $f(x-2h)$, $f(x+3h)$ and $f(x-3h)$
+schemes for finding the derivative.\cite{numdiff}\cite{nume} We first write down the Taylor series expansions of $f(x+h)$, $f(x-h)$, $f(x+2h)$,  $f(x-2h)$, $f(x+3h)$ and $f(x-3h)$
 \begin{equation} \label{eq1}
 	\begin{aligned}
 		f(x+h)  & =f(x)+h\frac{f'(x)}{1 !}+h^2 \frac{f''(x)}{2 !}   \\
@@ -168,11 +171,11 @@ schemes for the first derivative and second derivative:
 
 \subsection*{Implement}
 
-I chose $x^4+\\sin(x)$ as test function, with $0\leq x \leq 2$ and $h=0.1$
+I chose $x^4+\sin(x)$ as test function, with $0\leq x \leq 2$ and $h=0.1$
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/sample_points.png} % Example image
+	\includegraphics[width=0.8\columnwidth]{img/sample_points.png} 
 	\caption{Sample Points of f(x)}
 	\label{fig:sample_points}
 \end{figure}
@@ -181,20 +184,37 @@ After applying second-order accurate difference approximations, I draw $f'(x)$ a
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/f'(x).png} % Example image
+	\includegraphics[width=0.8\columnwidth]{img/f'(x).png} 
 	\caption{Compare real first derivative and finite difference}
 	\label{fig:f'(x)}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/f''(x).png} % Example image
+	\includegraphics[width=0.8\columnwidth]{img/f''(x).png} 
 	\caption{Compare real second derivative and finite difference}
 	\label{fig:f''(x)}
 \end{figure}
 
 
-Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second-order accurate difference approximations are close to the real derivative, even their actual difference. You can find more implementation detail in the code.
+Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second-order accurate difference approximations are close to the real derivative, even their actual difference. 
+And I compared the deviations of the difference approximations with the actual difference.
+It can be found that both the first-order derivatives Figure.\ref{fig:error_f'(x)} and the second-order \ref{fig:error_f''(x)} derivatives are better than the forward and backward differential approximations, which is why we need to use the central differential approximation as much as possible and only use the forward and backward differential approximations at the endpoints.
+You can find more implementation detail in the code.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/error_f'(x).png} 
+	\caption{errors of f'(x)}
+	\label{fig:error_f'(x)}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/error_f''(x).png} 
+	\caption{errors of f''(x)}
+	\label{fig:error_f''(x)}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 
@@ -203,7 +223,23 @@ Figure.\ref{fig:f'(x)} and Figure.\ref{fig:f''(x)} told us that the second-order
 \subsection*{Answer}
 
 To evaluate double integrals which are performed on the rectangle $R = \{ (x, y) \in \mathbb{R}^2: a \leq x \leq b \text{ and } c \leq y \leq d  \} $, We first consider the uniform-grid in each
-dimension. Let grid space of $x$ and $y$ be the $h$, which means we have $x_1, x_2, \ldots , x_{n_x}$ and $y_1, y_2, \ldots , y_{n_y}$.\cite{numinteg}
+dimension. Let grid space of $x$ and $y$ be the $h$, which means we have $x_1, x_2, \ldots , x_{n_x}$ and $y_1, y_2, \ldots , y_{n_y}$.\cite{numinteg} \cite{nume}
+For integrals in one dimension, we could start with something simple like the trapezoidal rule
+
+\begin{equation}
+	\int^{b}_{a}f(x)dx\approx \frac{h}{2}[f(a) + f(b) + 2\sum^{n-1}_{i=2}f(x_i)]
+\end{equation}
+
+We can now extend this definition to the two-dimensional case, i.e
+
+\begin{equation}
+	A_{2D}=\int^{c}_{d}\int^{a}_{b}f(x, y)\, dxdy = \int^{c}_{d}g(y)\, dy
+\end{equation}
+
+where, 
+\begin{equation}
+	g(y) = \int^{b}_{a}f(x,y)\,dx 
+\end{equation}
 
 \subparagraph*{Task 1}
 Now apply the trapezoidal rule to calculate the integral to $x$ with fixed $y$.
@@ -250,26 +286,42 @@ Now we can simplify eq.\eqref{substitutedI} as much as possible
 
 \subsection*{Implement}
 
-Here is the implemented code with Matlab. I compared Matlab's original function with an extra h parameter for testing how different the final integration result would be with different accuracy of the partition. Then use for-loop to accumulate multiple times and finally output the result of integration
+Here is the implemented code with Matlab. 
+I used a for-loop to implement the above algorithm. $my\_integral2$ function takes 5 parameters: 
+\begin{enumerate}[itemindent=1em, label=•]
+	\item \textbf{f}: the function
+	\item \textbf{a, b}: the start and end points of x, 
+	\item \textbf{c, d}: the start and end points of y, 
+	\item \textbf{h}: the length of the partition (for comparing computational accuracy)
+\end{enumerate}
+For the four summation symbols in the formula, I use four for-loops to traverse all the elements and sum them and then get the integral result.
 
 \begin{lstlisting}
 	function I=my_integral2(f, a, b, c, d, h)
 		x=a:h:b;
 		y=c:h:d;
+
 		n_x=length(x);
 		n_y=length(y);
 		I=f(a, c)+f(b,c)+f(a,d)+f(b,d);
+
+
 		for i=2:n_x-1
 			I = I + 2*(f(x(i),c)+f(x(i),d));
 		end
+
+
 		for j=2:n_y-1
 			I = I + 2*(f(a, y(j))+f(b, y(j)));
 		end
+
+		
 		for i=2:n_x-1
 			for j=2:n_y-1
 				I = I + 4*f(x(i), y(j));
 			end
 		end
+
 		I = h^2/4*I;
 	end
 \end{lstlisting}
@@ -306,7 +358,7 @@ Here I use the formula $\frac{\left\lvert my\_integral2-real\right\rvert }{\left
 		\bottomrule
 	\end{tabular}
 \end{table*}
-
+\clearpage
 \newpage
 \bibliographystyle{plain}
 \bibliography{ref.bib} 
