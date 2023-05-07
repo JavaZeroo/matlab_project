@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1670761993 "main.aux" "main.bbl" "main" 1670761996
+["bibtex main"] 1670761993 "main.aux" "main.bbl" "main" 1672327580
   "c:/texlive/2022/texmf-dist/bibtex/bst/base/plain.bst" 1669545887 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1670761995 3189 0b91347e7d76b0226bfb0f63b22f3167 "pdflatex"
+  "main.aux" 1672327579 3189 0b91347e7d76b0226bfb0f63b22f3167 "pdflatex"
   "ref.bib" 1670761963 699 e3c14ec5c17744c1d356e1f2e3e685d6 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1670761993 "e:/Code/Matlab/project/main.tex" "main.pdf" "main" 1670761996
+["pdflatex"] 1672327578 "e:/Code/Matlab/project/main.tex" "main.pdf" "main" 1672327580
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1669546229 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1669546020 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1669546409 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -131,17 +131,17 @@
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1669548233 4448422 53302d27d6d34c8e3e97ce3a8b4bdfa7 ""
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1669548398 2826463 cd823440c9f4e11aebd9139dc266d6d3 ""
   "c:/texlive/2022/texmf.cnf" 1669548204 713 e69b156964470283e0530f5060668171 ""
-  "e:/Code/Matlab/project/main.tex" 1670761990 14065 8c4090a39e52a08ac5356fbddc684446 ""
+  "e:/Code/Matlab/project/main.tex" 1672327576 14065 8c4090a39e52a08ac5356fbddc684446 ""
   "fphw.cls" 1670050927 4383 617a62e107f5051483fd0a5b5bad8e37 ""
   "img/error_f''(x).png" 1670740199 17541 630f5b7b1284d63a241c1617185c0552 ""
   "img/error_f'(x).png" 1670740190 15704 e52d0ee85ce375aa5217cd1fc3723ac0 ""
   "img/f''(x).png" 1670054351 29525 59ec8c74de77d2455f9e521325234666 ""
   "img/f'(x).png" 1670054337 30357 174c84f07fd3befc50652237ed57b0c2 ""
   "img/sample_points.png" 1669979776 25212 7ba948954935cfef17d43aece03156d8 ""
-  "main.aux" 1670761995 3189 0b91347e7d76b0226bfb0f63b22f3167 "pdflatex"
+  "main.aux" 1672327579 3189 0b91347e7d76b0226bfb0f63b22f3167 "pdflatex"
   "main.bbl" 1670761993 614 884a47fbb471c9bf6175900aceda4a42 "bibtex main"
-  "main.out" 1670761995 162 4b7bbc8c7804ed54387d934d2c3b496c "pdflatex"
-  "main.tex" 1670761990 14065 8c4090a39e52a08ac5356fbddc684446 ""
+  "main.out" 1672327579 162 4b7bbc8c7804ed54387d934d2c3b496c "pdflatex"
+  "main.tex" 1672327576 14065 8c4090a39e52a08ac5356fbddc684446 ""
   (generated)
   "main.aux"
   "main.log"
